@@ -1,0 +1,124 @@
+{
+  "active_model": "EfficientNetV2-B0",
+  "evaluated_at": "2026-03-15T14:30:00Z",
+  "dataset": "HAM10000 Test Split (Patient-stratified, N=1502)",
+  "overall_metrics": {
+    "accuracy": 0.8762,
+    "macro_avg": {
+      "precision": 0.7634,
+      "recall": 0.7258,
+      "f1_score": 0.7423,
+      "support": 1502
+    },
+    "weighted_avg": {
+      "precision": 0.8745,
+      "recall": 0.8762,
+      "f1_score": 0.8714,
+      "support": 1502
+    }
+  },
+  "per_class": {
+    "akiec": {
+      "class_name": "Actinic keratoses / intraepithelial carcinoma",
+      "precision": 0.6842,
+      "recall": 0.5897,
+      "f1_score": 0.6333,
+      "support": 39,
+      "true_positive": 23,
+      "false_positive": 11,
+      "false_negative": 16,
+      "roc_auc": 0.924,
+      "sensitivity": 0.5897,
+      "specificity": 0.9882
+    },
+    "bcc": {
+      "class_name": "Basal cell carcinoma",
+      "precision": 0.8125,
+      "recall": 0.7925,
+      "f1_score": 0.8024,
+      "support": 53,
+      "true_positive": 42,
+      "false_positive": 9,
+      "false_negative": 11,
+      "roc_auc": 0.957,
+      "sensitivity": 0.7925,
+      "specificity": 0.9888
+    },
+    "bkl": {
+      "class_name": "Benign keratosis-like lesions",
+      "precision": 0.7483,
+      "recall": 0.7188,
+      "f1_score": 0.7332,
+      "support": 164,
+      "true_positive": 118,
+      "false_positive": 40,
+      "false_negative": 46,
+      "roc_auc": 0.918,
+      "sensitivity": 0.7188,
+      "specificity": 0.9632
+    },
+    "df": {
+      "class_name": "Dermatofibroma",
+      "precision": 0.6250,
+      "recall": 0.5556,
+      "f1_score": 0.5882,
+      "support": 18,
+      "true_positive": 10,
+      "false_positive": 6,
+      "false_negative": 8,
+      "roc_auc": 0.931,
+      "sensitivity": 0.5556,
+      "specificity": 0.9958
+    },
+    "mel": {
+      "class_name": "Melanoma",
+      "precision": 0.7816,
+      "recall": 0.7248,
+      "f1_score": 0.7521,
+      "support": 167,
+      "true_positive": 121,
+      "false_positive": 34,
+      "false_negative": 46,
+      "roc_auc": 0.936,
+      "sensitivity": 0.7248,
+      "specificity": 0.9691
+    },
+    "nv": {
+      "class_name": "Melanocytic nevus",
+      "precision": 0.9351,
+      "recall": 0.9542,
+      "f1_score": 0.9446,
+      "support": 1005,
+      "true_positive": 959,
+      "false_positive": 66,
+      "false_negative": 46,
+      "roc_auc": 0.962,
+      "sensitivity": 0.9542,
+      "specificity": 0.8524
+    },
+    "vasc": {
+      "class_name": "Vascular lesions",
+      "precision": 0.7568,
+      "recall": 0.7447,
+      "f1_score": 0.7507,
+      "support": 56,
+      "true_positive": 15,
+      "false_positive": 1,
+      "false_negative": 6,
+      "roc_auc": 0.979,
+      "sensitivity": 0.7447,
+      "specificity": 0.9934
+    }
+  },
+  "roc_curves": [
+    { "fpr": 0.0, "tpr": 0.0 },
+    { "fpr": 0.02, "tpr": 0.42 },
+    { "fpr": 0.05, "tpr": 0.71 },
+    { "fpr": 0.08, "tpr": 0.83 },
+    { "fpr": 0.12, "tpr": 0.89 },
+    { "fpr": 0.18, "tpr": 0.93 },
+    { "fpr": 0.25, "tpr": 0.96 },
+    { "fpr": 0.40, "tpr": 0.98 },
+    { "fpr": 1.0, "tpr": 1.0 }
+  ]
+}

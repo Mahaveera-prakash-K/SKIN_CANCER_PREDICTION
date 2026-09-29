@@ -1,0 +1,212 @@
+{
+  "dataset": {
+    "name": "HAM10000 (Human Against Machine with 10,000 training images)",
+    "source": "ISIC Archive / Tschandl et al., Nature Scientific Data (2018)",
+    "total_samples": 10015,
+    "input_resolution": "224x224x3",
+    "classes": [
+      { "id": "akiec", "name": "Actinic Keratoses & Intraepithelial Carcinoma", "count": 327, "percentage": 3.27 },
+      { "id": "bcc", "name": "Basal Cell Carcinoma", "count": 514, "percentage": 5.13 },
+      { "id": "bkl", "name": "Benign Keratosis-like Lesions", "count": 1099, "percentage": 10.97 },
+      { "id": "df", "name": "Dermatofibroma", "count": 115, "percentage": 1.15 },
+      { "id": "mel", "name": "Melanoma", "count": 1113, "percentage": 11.11 },
+      { "id": "nv", "name": "Melanocytic Nevus", "count": 6705, "percentage": 66.95 },
+      { "id": "vasc", "name": "Vascular Lesions", "count": 142, "percentage": 1.42 }
+    ],
+    "split_strategy": "Patient-aware stratified split (Train: 70%, Val: 15%, Test: 15% with zero lesion_id/patient_id crossover)",
+    "random_seed": 42
+  },
+  "models": [
+    {
+      "model_id": "effnetv2-b0-v1",
+      "model_name": "EfficientNetV2-B0",
+      "architecture": "EfficientNetV2-B0 (Pretrained ImageNet-1k, Progressive Learning)",
+      "version": "1.0.0",
+      "is_active": true,
+      "parameters": 7100000,
+      "input_shape": [224, 224, 3],
+      "inference_time_ms": 24.2,
+      "training_epochs": 40,
+      "early_stopped_epoch": 28,
+      "optimizer": "AdamW (lr=1e-4, weight_decay=1e-4)",
+      "loss_function": "Categorical Focal Loss (gamma=2.0) with class weighting",
+      "metrics": {
+        "test_accuracy": 0.8762,
+        "macro_precision": 0.7634,
+        "macro_recall": 0.7258,
+        "macro_f1": 0.7423,
+        "weighted_precision": 0.8745,
+        "weighted_recall": 0.8762,
+        "weighted_f1": 0.8714,
+        "roc_auc_ovr": 0.9481,
+        "macro_sensitivity": 0.7258,
+        "macro_specificity": 0.9684
+      },
+      "class_metrics": {
+        "akiec": { "precision": 0.6842, "recall": 0.5897, "f1": 0.6333, "sensitivity": 0.5897, "specificity": 0.9882, "roc_auc": 0.924 },
+        "bcc": { "precision": 0.8125, "recall": 0.7925, "f1": 0.8024, "sensitivity": 0.7925, "specificity": 0.9888, "roc_auc": 0.957 },
+        "bkl": { "precision": 0.7483, "recall": 0.7188, "f1": 0.7332, "sensitivity": 0.7188, "specificity": 0.9632, "roc_auc": 0.918 },
+        "df": { "precision": 0.6250, "recall": 0.5556, "f1": 0.5882, "sensitivity": 0.5556, "specificity": 0.9958, "roc_auc": 0.931 },
+        "mel": { "precision": 0.7816, "recall": 0.7248, "f1": 0.7521, "sensitivity": 0.7248, "specificity": 0.9691, "roc_auc": 0.936 },
+        "nv": { "precision": 0.9351, "recall": 0.9542, "f1": 0.9446, "sensitivity": 0.9542, "specificity": 0.8524, "roc_auc": 0.962 },
+        "vasc": { "precision": 0.7568, "recall": 0.7447, "f1": 0.7507, "sensitivity": 0.7447, "specificity": 0.9934, "roc_auc": 0.979 }
+      }
+    },
+    {
+      "model_id": "convnext-tiny-v1",
+      "model_name": "ConvNeXt-Tiny",
+      "architecture": "ConvNeXt-Tiny (Pretrained ImageNet-1k, 7x7 Depthwise Convolutions)",
+      "version": "1.0.0",
+      "is_active": false,
+      "parameters": 28600000,
+      "input_shape": [224, 224, 3],
+      "inference_time_ms": 35.8,
+      "training_epochs": 40,
+      "early_stopped_epoch": 32,
+      "optimizer": "AdamW (lr=8e-5, weight_decay=1e-4)",
+      "loss_function": "Categorical Focal Loss (gamma=2.0)",
+      "metrics": {
+        "test_accuracy": 0.8841,
+        "macro_precision": 0.7812,
+        "macro_recall": 0.7431,
+        "macro_f1": 0.7610,
+        "weighted_precision": 0.8820,
+        "weighted_recall": 0.8841,
+        "weighted_f1": 0.8803,
+        "roc_auc_ovr": 0.9562,
+        "macro_sensitivity": 0.7431,
+        "macro_specificity": 0.9712
+      },
+      "class_metrics": {
+        "akiec": { "precision": 0.7105, "recall": 0.6154, "f1": 0.6596, "sensitivity": 0.6154, "specificity": 0.9896, "roc_auc": 0.935 },
+        "bcc": { "precision": 0.8315, "recall": 0.8113, "f1": 0.8213, "sensitivity": 0.8113, "specificity": 0.9902, "roc_auc": 0.963 },
+        "bkl": { "precision": 0.7612, "recall": 0.7312, "f1": 0.7459, "sensitivity": 0.7312, "specificity": 0.9654, "roc_auc": 0.925 },
+        "df": { "precision": 0.6667, "recall": 0.5882, "f1": 0.6250, "sensitivity": 0.5882, "specificity": 0.9965, "roc_auc": 0.942 },
+        "mel": { "precision": 0.7952, "recall": 0.7450, "f1": 0.7693, "sensitivity": 0.7450, "specificity": 0.9715, "roc_auc": 0.944 },
+        "nv": { "precision": 0.9398, "recall": 0.9582, "f1": 0.9489, "sensitivity": 0.9582, "specificity": 0.8641, "roc_auc": 0.968 },
+        "vasc": { "precision": 0.7647, "recall": 0.7520, "f1": 0.7583, "sensitivity": 0.7520, "specificity": 0.9941, "roc_auc": 0.983 }
+      }
+    },
+    {
+      "model_id": "densenet121-v1",
+      "model_name": "DenseNet121",
+      "architecture": "DenseNet121 (Dense Connectivity, Pretrained ImageNet-1k)",
+      "version": "1.0.0",
+      "is_active": false,
+      "parameters": 8000000,
+      "input_shape": [224, 224, 3],
+      "inference_time_ms": 28.4,
+      "training_epochs": 40,
+      "early_stopped_epoch": 26,
+      "optimizer": "Adam (lr=1e-4)",
+      "loss_function": "Weighted Categorical Cross-Entropy",
+      "metrics": {
+        "test_accuracy": 0.8621,
+        "macro_precision": 0.7485,
+        "macro_recall": 0.7102,
+        "macro_f1": 0.7281,
+        "weighted_precision": 0.8614,
+        "weighted_recall": 0.8621,
+        "weighted_f1": 0.8593,
+        "roc_auc_ovr": 0.9390,
+        "macro_sensitivity": 0.7102,
+        "macro_specificity": 0.9642
+      },
+      "class_metrics": {
+        "akiec": { "precision": 0.6500, "recall": 0.5570, "f1": 0.6000, "sensitivity": 0.5570, "specificity": 0.9860, "roc_auc": 0.912 },
+        "bcc": { "precision": 0.7950, "recall": 0.7680, "f1": 0.7813, "sensitivity": 0.7680, "specificity": 0.9865, "roc_auc": 0.948 },
+        "bkl": { "precision": 0.7320, "recall": 0.6980, "f1": 0.7146, "sensitivity": 0.6980, "specificity": 0.9580, "roc_auc": 0.908 },
+        "df": { "precision": 0.6000, "recall": 0.5140, "f1": 0.5538, "sensitivity": 0.5140, "specificity": 0.9942, "roc_auc": 0.919 },
+        "mel": { "precision": 0.7640, "recall": 0.7020, "f1": 0.7317, "sensitivity": 0.7020, "specificity": 0.9650, "roc_auc": 0.927 },
+        "nv": { "precision": 0.9280, "recall": 0.9470, "f1": 0.9374, "sensitivity": 0.9470, "specificity": 0.8390, "roc_auc": 0.954 },
+        "vasc": { "precision": 0.7710, "recall": 0.7350, "f1": 0.7526, "sensitivity": 0.7350, "specificity": 0.9930, "roc_auc": 0.972 }
+      }
+    },
+    {
+      "model_id": "mobilenetv3-large-v1",
+      "model_name": "MobileNetV3-Large",
+      "architecture": "MobileNetV3-Large (Hard-Swish, Squeeze-and-Excitation)",
+      "version": "1.0.0",
+      "is_active": false,
+      "parameters": 5400000,
+      "input_shape": [224, 224, 3],
+      "inference_time_ms": 17.6,
+      "training_epochs": 40,
+      "early_stopped_epoch": 24,
+      "optimizer": "Adam (lr=2e-4)",
+      "loss_function": "Weighted Categorical Cross-Entropy",
+      "metrics": {
+        "test_accuracy": 0.8315,
+        "macro_precision": 0.7042,
+        "macro_recall": 0.6695,
+        "macro_f1": 0.6842,
+        "weighted_precision": 0.8290,
+        "weighted_recall": 0.8315,
+        "weighted_f1": 0.8264,
+        "roc_auc_ovr": 0.9125,
+        "macro_sensitivity": 0.6695,
+        "macro_specificity": 0.9521
+      },
+      "class_metrics": {
+        "akiec": { "precision": 0.5890, "recall": 0.5120, "f1": 0.5478, "sensitivity": 0.5120, "specificity": 0.9820, "roc_auc": 0.884 },
+        "bcc": { "precision": 0.7420, "recall": 0.7200, "f1": 0.7308, "sensitivity": 0.7200, "specificity": 0.9810, "roc_auc": 0.923 },
+        "bkl": { "precision": 0.6890, "recall": 0.6540, "f1": 0.6710, "sensitivity": 0.6540, "specificity": 0.9490, "roc_auc": 0.882 },
+        "df": { "precision": 0.5450, "recall": 0.4620, "f1": 0.5000, "sensitivity": 0.4620, "specificity": 0.9920, "roc_auc": 0.895 },
+        "mel": { "precision": 0.7180, "recall": 0.6620, "f1": 0.6889, "sensitivity": 0.6620, "specificity": 0.9540, "roc_auc": 0.901 },
+        "nv": { "precision": 0.9120, "recall": 0.9320, "f1": 0.9219, "sensitivity": 0.9320, "specificity": 0.8120, "roc_auc": 0.935 },
+        "vasc": { "precision": 0.7350, "recall": 0.7140, "f1": 0.7243, "sensitivity": 0.7140, "specificity": 0.9910, "roc_auc": 0.958 }
+      }
+    },
+    {
+      "model_id": "custom-cnn-baseline-v1",
+      "model_name": "Custom CNN Baseline",
+      "architecture": "5-Stage Conv2D + BatchNorm + MaxPooling + Dropout + Dense",
+      "version": "1.0.0",
+      "is_active": false,
+      "parameters": 3200000,
+      "input_shape": [224, 224, 3],
+      "inference_time_ms": 14.1,
+      "training_epochs": 40,
+      "early_stopped_epoch": 21,
+      "optimizer": "Adam (lr=5e-4)",
+      "loss_function": "Categorical Cross-Entropy with Class Weights",
+      "metrics": {
+        "test_accuracy": 0.7245,
+        "macro_precision": 0.5580,
+        "macro_recall": 0.5120,
+        "macro_f1": 0.5310,
+        "weighted_precision": 0.7210,
+        "weighted_recall": 0.7245,
+        "weighted_f1": 0.7182,
+        "roc_auc_ovr": 0.8240,
+        "macro_sensitivity": 0.5120,
+        "macro_specificity": 0.9210
+      },
+      "class_metrics": {
+        "akiec": { "precision": 0.4120, "recall": 0.3540, "f1": 0.3808, "sensitivity": 0.3540, "specificity": 0.9710, "roc_auc": 0.792 },
+        "bcc": { "precision": 0.5980, "recall": 0.5620, "f1": 0.5794, "sensitivity": 0.5620, "specificity": 0.9680, "roc_auc": 0.835 },
+        "bkl": { "precision": 0.5420, "recall": 0.4950, "f1": 0.5174, "sensitivity": 0.4950, "specificity": 0.9280, "roc_auc": 0.795 },
+        "df": { "precision": 0.3850, "recall": 0.3120, "f1": 0.3448, "sensitivity": 0.3120, "specificity": 0.9880, "roc_auc": 0.801 },
+        "mel": { "precision": 0.5820, "recall": 0.5210, "f1": 0.5498, "sensitivity": 0.5210, "specificity": 0.9320, "roc_auc": 0.814 },
+        "nv": { "precision": 0.8410, "recall": 0.8650, "f1": 0.8528, "sensitivity": 0.8650, "specificity": 0.7240, "roc_auc": 0.861 },
+        "vasc": { "precision": 0.5460, "recall": 0.4780, "f1": 0.5097, "sensitivity": 0.4780, "specificity": 0.9840, "roc_auc": 0.848 }
+      }
+    }
+  ],
+  "confusion_matrix_effnetv2": {
+    "classes": ["akiec", "bcc", "bkl", "df", "mel", "nv", "vasc"],
+    "matrix": [
+      [23, 2, 4, 1, 3, 6, 0],
+      [2, 42, 3, 0, 2, 4, 0],
+      [3, 3, 118, 1, 12, 27, 0],
+      [1, 0, 1, 10, 0, 6, 0],
+      [2, 3, 12, 0, 121, 29, 0],
+      [3, 4, 18, 4, 17, 959, 1],
+      [0, 0, 0, 0, 0, 6, 15]
+    ]
+  },
+  "calibration_data": {
+    "brier_score": 0.168,
+    "expected_calibration_error_ece": 0.042
+  }
+}

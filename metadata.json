@@ -1,0 +1,6 @@
+{
+  "name": "DermaScan AI",
+  "description": "AI-Assisted Skin Lesion Image Classification & Explainability Platform featuring deep learning models, Grad-CAM visualization, and comprehensive research metrics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
